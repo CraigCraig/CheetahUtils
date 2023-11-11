@@ -74,14 +74,14 @@ public class Color
         hex = hex.Replace("#", "");
         if (hex.Length == 6)
         {
-            R = byte.Parse(hex.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
+            R = byte.Parse(hex[..2], System.Globalization.NumberStyles.HexNumber);
             G = byte.Parse(hex.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
             B = byte.Parse(hex.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
             A = 255;
         }
         else if (hex.Length == 8)
         {
-            R = byte.Parse(hex.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
+            R = byte.Parse(hex[..2], System.Globalization.NumberStyles.HexNumber);
             G = byte.Parse(hex.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
             B = byte.Parse(hex.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
             A = byte.Parse(hex.Substring(6, 2), System.Globalization.NumberStyles.HexNumber);
