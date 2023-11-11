@@ -7,10 +7,6 @@ A collection of utilities for C#.
 [License](#license)<br>
 [Maintainers](#maintainers)<br>
 
-## Installation
-### Source
-To install CheeseyUtils from source, clone the repository and build the project. Then add the CheeseyUtils.dll as a reference to your project.
-
 ## Contributing
 If you would like to contribute to CheeseyUtils, please fork the repository and create a pull request. Please make sure to document your code and add a description of your changes.<br>
 If you would like to report a bug or request a feature, please create an issue.<br>
