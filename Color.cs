@@ -1,4 +1,4 @@
-﻿namespace CheesyUtils;
+﻿namespace CheeseyUtils;
 
 /// <summary>
 /// A class that represents a color.

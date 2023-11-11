@@ -1,6 +1,4 @@
-﻿namespace CheesyUtils;
-
-using System;
+﻿namespace CheeseyUtils;
 
 /// <summary>
 /// Class specific to CheesyUtils.
@@ -10,5 +8,5 @@ public static class CheesyUtils
     /// <summary>
     /// The version of CheesyUtils.
     /// </summary>
-    public static Version? Version => typeof(CheesyUtils).Assembly.GetName().Version ?? throw new NullReferenceException("Version is null");
+    public static Version Version { get; } = new(0, 0, 0);
 }

@@ -1,4 +1,4 @@
-﻿namespace CheesyUtils;
+﻿namespace CheeseyUtils;
 
 using System;
 
