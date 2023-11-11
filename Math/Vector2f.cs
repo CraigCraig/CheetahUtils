@@ -3,6 +3,9 @@
 using System;
 using System.Collections.Generic;
 
+/// <summary>
+/// Represents a 2D vector with X and Y components.
+/// </summary>
 public class Vector2f : IEquatable<Vector2f?>
 {
     public float X;
