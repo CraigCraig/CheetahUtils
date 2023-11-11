@@ -52,7 +52,7 @@ public class Vector2f : IEquatable<Vector2f?>
 
     public static float Dot(Vector2f u, Vector2f v)
     {
-        return u.X * v.X + u.Y * v.Y;
+        return (u.X * v.X) + (u.Y * v.Y);
     }
 
     public static Vector2f Negate(Vector2f v)
