@@ -16,3 +16,9 @@ CheeseyUtils is licensed under [MIT](LICENSE)
 
 ## Maintainers
 [Craig Craig](https://github.com/CraigCraig) - Creator and Maintainer
+
+## Roadmap
+### v0.1.0
+- [ ] ConsoleUtils
+    - [X] Open/Close Console
+    - [ ] Console Colors
