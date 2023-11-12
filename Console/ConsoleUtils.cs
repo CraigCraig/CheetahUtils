@@ -1,6 +1,7 @@
 ﻿namespace CheeseyUtils.Console;
 
 using System;
+using System.Runtime.Versioning;
 
 internal static class ConsoleUtils
 {
@@ -10,7 +11,7 @@ internal static class ConsoleUtils
         BACKGROUND = 48
     }
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>")]
+    [SupportedOSPlatform("windows")]
     internal static void AppendTitle(string value)
     {
         Console.Title = $"{Console.Title} {value}";
@@ -31,7 +32,7 @@ internal static class ConsoleUtils
         }
     }
 
-    internal static string ForegroundColor(Color color) => $"\x1b[{38};2;{color.R};{color.G};{color.B}m";
+    internal static string ForegroundColor(Color color) => $"\x1b[{ColorType.FOREGROUND};2;{color.R};{color.G};{color.B}m";
 
-    internal static string BackgroundColor(Color color) => $"\x1b[{48};2;{color.R};{color.G};{color.B}m";
+    internal static string BackgroundColor(Color color) => $"\x1b[{ColorType.BACKGROUND};2;{color.R};{color.G};{color.B}m";
 }

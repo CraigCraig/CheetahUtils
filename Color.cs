@@ -1,5 +1,7 @@
 ﻿namespace CheeseyUtils;
 
+using System.Runtime.CompilerServices;
+
 /// <summary>
 /// A class that represents a color.
 /// </summary>
@@ -130,5 +132,10 @@ public partial class Color
     public override int GetHashCode()
     {
         return HashCode.Combine(R, G, B, A);
+    }
+
+    public override string ToString()
+    {
+        return $"\x1b[{38};2;{R};{G};{B}m";
     }
 }

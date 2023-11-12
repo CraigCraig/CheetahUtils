@@ -54,6 +54,16 @@ public static partial class ConsoleInitializer
             InitializeOutStream();
             InitializeInStream();
         }
+
+        if (WindowsUtils.GetVersion() >= 0x0A000000)
+        {
+            var handle = WindowsUtils.GetStdHandle(-11);
+            if (WindowsUtils.GetConsoleMode(handle, out int mode))
+            {
+                mode |= 0x0004;
+                _ = WindowsUtils.SetConsoleMode(handle, mode);
+            }
+        }
     }
 
     private static void UnhandledException(object sender, UnhandledExceptionEventArgs e)
