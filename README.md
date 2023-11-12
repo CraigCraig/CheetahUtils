@@ -1,4 +1,5 @@
 # CheeseyUtils
+[![.NET](https://github.com/CraigCraig/CheeseyUtils/actions/workflows/dotnet.yml/badge.svg)](https://github.com/CraigCraig/CheeseyUtils/actions/workflows/dotnet.yml) <br>
 A collection of utilities for C#.<br>
 This is a work in progress<br><br>
 Current stable version: <span style="color:red">Not Released</span><br>
