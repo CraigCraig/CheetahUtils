@@ -8,7 +8,7 @@ public static class CheesyUtils
     /// <summary>
     /// The version of CheesyUtils.
     /// </summary>
-    public static Version Version { get; } = new(0, 0, 1, 0, 0, Version.ReleaseChannel.Development);
+    public static Version Version { get; } = new(1, 0, 0, 0, 0, Version.ReleaseChannel.Development);
 
     /// <summary>
     /// Author of CheesyUtils.
