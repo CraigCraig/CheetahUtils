@@ -11,9 +11,8 @@ on:
 
 jobs:
   build:
-
+    permissions: write-all
     runs-on: windows-latest
-
     steps:
     - uses: actions/checkout@v3
       with:
