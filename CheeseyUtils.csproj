@@ -13,7 +13,10 @@
     <None Remove=".gitignore" />
     <None Remove="LICENSE" />
     <None Remove="README.md" />
-	<Item Include=".github\workflows\dotnet.yml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include=".github\workflows\dotnet.yml" />
   </ItemGroup>
 
 </Project>
