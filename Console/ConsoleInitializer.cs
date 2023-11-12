@@ -1,9 +1,9 @@
 ﻿namespace CheeseyUtils.Console;
 
-using Microsoft.Win32.SafeHandles;
-using System.IO;
 using System;
+using System.IO;
 using System.Runtime.InteropServices;
+using Microsoft.Win32.SafeHandles;
 
 /// <summary>
 /// Methods meant to only be ran on Windows machines.

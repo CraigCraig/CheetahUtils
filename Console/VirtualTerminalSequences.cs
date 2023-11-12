@@ -1,7 +1,7 @@
 ﻿namespace CheeseyUtils.Console;
 
-using System.Text;
 using System.Drawing;
+using System.Text;
 
 internal static class VirtualTerminalSequences
 {

@@ -1,6 +1,9 @@
 ﻿namespace CheeseyUtils;
 
-public class Colors
+/// <summary>
+/// Collection of colors.
+/// </summary>
+public readonly struct Colors
 {
     public static Color Transparent { get; } = new(0, 0, 0, 0);
     public static Color Black { get; } = new(0, 0, 0, 255);

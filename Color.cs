@@ -1,7 +1,5 @@
 ﻿namespace CheeseyUtils;
 
-using System.Runtime.CompilerServices;
-
 /// <summary>
 /// A class that represents a color.
 /// </summary>
