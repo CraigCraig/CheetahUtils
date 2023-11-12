@@ -2,7 +2,7 @@
 
 using System.Text;
 
-public class Version(int major = 0, int minor = 0, int patch = 0, int build = 0, int rc = 0)
+public struct Version(int major = 0, int minor = 0, int patch = 0, int build = 0, int rc = 0)
 {
     public int Major { get; set; } = major;
     public int Minor { get; set; } = minor;
