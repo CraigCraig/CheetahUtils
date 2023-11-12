@@ -2,13 +2,14 @@
 
 using System.Text;
 
-public struct Version(int major = 0, int minor = 0, int patch = 0, int build = 0, int rc = 0)
+public partial struct Version(int major = 0, int minor = 0, int patch = 0, int build = 0, int rc = 0, Version.ReleaseChannel channel = Version.ReleaseChannel.Stable)
 {
     public int Major { get; set; } = major;
     public int Minor { get; set; } = minor;
     public int Patch { get; set; } = patch;
     public int Build { get; set; } = build;
     public int RC { get; set; } = rc;
+    public ReleaseChannel Channel { get; set; } = channel;
 
     public override string ToString()
     {
@@ -33,6 +34,11 @@ public struct Version(int major = 0, int minor = 0, int patch = 0, int build = 0
         if (RC != 0)
         {
             _ = sb.Append($"-RC{RC}");
+        }
+
+        if (Channel != ReleaseChannel.Stable)
+        {
+            _ = sb.Append($"-{Channel}");
         }
 
         return sb.ToString();
