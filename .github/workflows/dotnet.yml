@@ -21,8 +21,10 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 8.0.x
+    - name: Restore
+      run: dotnet restore
     - name: Build
-      run: dotnet build
+      run: dotnet build --no-restore
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
@@ -30,7 +32,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
       with:
         tag_name: RELEASE
-        release_name: WinToolbox
+        release_name: ${{ github.event.release.name }}.${{ github.event.release.tag_name }}
         body: ${{ github.event.head_commit.message }}
         draft: false
         prerelease: false
