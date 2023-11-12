@@ -3,7 +3,7 @@
 /// <summary>
 /// A class that represents a color.
 /// </summary>
-public class Color
+public partial class Color
 {
     /// <summary>
     /// The red component of the color.
@@ -114,6 +114,14 @@ public class Color
     /// </summary>
     /// <param name="c"></param>
     public static implicit operator Color(System.Drawing.Color c) => new(c.R, c.G, c.B, c.A);
+
+#if SFML
+    // cast to SFML.Graphics.Color
+    public static implicit operator SFML.Graphics.Color(Color c) => new(c.R, c.G, c.B, c.A);
+
+    // cast from SFML.Graphics.Color
+    public static implicit operator Color(SFML.Graphics.Color c) => new(c.R, c.G, c.B, c.A);
+#endif
 
     /// <summary>
     /// Get the hash code of this color.
