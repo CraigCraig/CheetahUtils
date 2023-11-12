@@ -3,7 +3,7 @@
 /// <summary>
 /// Class specific to CheesyUtils.
 /// </summary>
-public static class CheeseyUtils
+public static class CheesyUtils
 {
     /// <summary>
     /// The version of CheesyUtils.

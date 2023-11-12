@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include=".github\workflows\canary.yml" />
     <None Include=".github\workflows\release.yml" />
   </ItemGroup>
 
