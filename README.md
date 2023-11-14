@@ -1,9 +1,11 @@
 # CheeseyUtils
-[![.NET](https://github.com/CraigCraig/CheeseyUtils/actions/workflows/dotnet.yml/badge.svg)](https://github.com/CraigCraig/CheeseyUtils/actions/workflows/dotnet.yml) <br>
+[![.NET](https://github.com/CraigCraig/CheeseyUtils/actions/workflows/release.yml/badge.svg)](https://github.com/CraigCraig/CheeseyUtils/actions/workflows/release.yml)
+[![.NET](https://github.com/CraigCraig/CheeseyUtils/actions/workflows/nightly.yml/badge.svg)](https://github.com/CraigCraig/CheeseyUtils/actions/workflows/nightly.yml)<br>
+
 A collection of utilities for C#.<br>
 This is a work in progress<br><br>
-Current stable version: <span style="color:red">Not Released</span><br>
-Current development version: <span style="color:green">1.0.0</span>
+Current stable version: Not Released<br>
+Current development version: 1.0.0
 ## Table of Contents
 [Installation](#installation)<br>
 [Contributing](#contributing)<br>
