@@ -1,0 +1,55 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+# Actions used in this workflow:
+# http://github.com/actions/checkout
+# http://github.com/actions/cache
+# http://github.com/ncipollo/release-action
+
+name: "Nightly"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  checkout:
+    permissions: write-all
+    runs-on: monster
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        submodules: 'recursive'
+        ref: 'nightly'
+  build:
+    needs: checkout
+    permissions: write-all
+    runs-on: monster
+    steps:
+    - name: Restore
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore --configuration Release
+  package:
+    needs: build
+    permissions: write-all
+    runs-on: monster
+    steps:
+    - name: Packaging Binaries
+      run: zip -r CheeseyUtils.zip CheeseyUtils/bin/Release/net8.0
+  publish:
+    needs: package
+    permissions: write-all
+    runs-on: monster
+    steps:
+    - name: Create a Nightly Release
+      id: create_release
+      uses: ncipollo/release-action@v1.13.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: Nightly
+        release_name: ${{ github.repository.name }}
+        body: ${{ github.run_id }} ${{ github.event.head_commit.message }}
+        allowUpdates: true
+        prerelease: true
