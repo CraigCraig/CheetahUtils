@@ -1,75 +1,59 @@
 ﻿namespace CheeseyUtils;
 
-using System;
-using System.Runtime.CompilerServices;
-using System.Text;
-
 public static class Log
 {
-    public static Color DefaultColor { get; set; } = Colors.LightGray;
+    private static readonly string _logFile = "latest.log";
+    private static bool _initialized = false;
+    private static readonly List<string> _buffer = [];
 
-    public static Level LogLevel { get; set; } = Level.INFO;
-
-    public enum Level
+    private static void Initialize()
     {
-        INFO,
-        WARNING,
-        ERROR,
-        DEBUG,
-        FATAL
-    }
-
-    public static void Info(string line)
-    {
-        InternalWriteLine(line, Level.INFO);
-    }
-
-    public static void Debug(string line)
-    {
-        InternalWriteLine(line, Level.DEBUG);
-    }
-
-    public static void Warning(string line, [CallerMemberName] string callerName = "")
-    {
-        line = $"[{callerName}] {Colors.DarkYellow}{line}";
-        InternalWriteLine(line, Level.WARNING);
-    }
-
-    public static void Error(Exception ex, [CallerMemberName] string callerName = "", [CallerLineNumber] int callerLine = 0)
-    {
-        Error(ex.Message, callerName, callerLine);
-    }
-
-    public static void Error(string? line = null, [CallerMemberName] string callerName = "", [CallerLineNumber] int callerLine = 0)
-    {
-        if (!string.IsNullOrEmpty(line))
+        if (!File.Exists(_logFile))
         {
-            line = $"[{callerName}] [{callerLine}] {Colors.DarkYellow}{line}";
-            InternalWriteLine(line, Level.ERROR);
+            _ = File.Create(_logFile);
         }
-    }
-
-    private static void InternalWriteLine(string line, Level level)
-    {
-        StringBuilder sb = new();
-        _ = sb.Append($"{Colors.White}");
-        Color? pcolor = Colors.Gray;
-        Color lcolor = DefaultColor;
-
-        if (level == Level.ERROR)
+        else
         {
-            pcolor = Colors.DarkRed;
-            lcolor = Colors.LightGray;
+            File.Delete(_logFile);
+            _ = File.Create(_logFile);
         }
 
-        if (level == Level.WARNING)
+        Task task = Task.Run(() =>
         {
-            pcolor = Colors.DarkYellow;
-            lcolor = Colors.LightGray;
+            _buffer.Add("Logger Initialized");
+            while (true)
+            {
+                lock (_buffer)
+                {
+                    while (_buffer.Count > 0)
+                    {
+                        File.AppendAllText(_logFile, _buffer[0]);
+                        Console.WriteLine(_buffer[0]);
+                        _buffer.RemoveAt(0);
+                    }
+                }
+                Thread.Sleep(1);
+            }
+        });
+
+        _initialized = true;
+    }
+
+    public static void WriteLine(string line)
+    {
+        InternalWrite($"line{Environment.NewLine}");
+    }
+
+    private static void InternalWrite(string line)
+    {
+        if (!_initialized)
+        {
+            Initialize();
         }
 
-        _ = sb.Append($"{Colors.White}[{pcolor}{level}{Colors.White}]{lcolor} ");
-        _ = sb.Append(line);
-        System.Console.WriteLine(sb);
+        lock (_buffer)
+        {
+            _buffer.Add(line);
+        }
     }
 }
