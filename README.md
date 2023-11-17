@@ -1,4 +1,4 @@
-# CheeseyUtils
+﻿# CheeseyUtils
 [![.NET](https://github.com/CraigCraig/CheeseyUtils/actions/workflows/release.yml/badge.svg)](https://github.com/CraigCraig/CheeseyUtils/actions/workflows/release.yml)
 [![.NET](https://github.com/CraigCraig/CheeseyUtils/actions/workflows/nightly.yml/badge.svg)](https://github.com/CraigCraig/CheeseyUtils/actions/workflows/nightly.yml)<br>
 
@@ -17,6 +17,16 @@ CheeseyUtils is licensed under [MIT](LICENSE)
 
 ## Maintainers
 [Craig Craig](https://github.com/CraigCraig) - Creator and Maintainer
+
+## Usage
+
+### Installation
+Clone the repository and add the project to your solution.<br>
+I am still working on CI/CD, so there is no release yet.<br>
+
+### Usage
+Documentation coming eventually.<br>
+For now, you can look at the source code to see what is available.<br>
 
 ## Contributing
 If you would like to contribute to CheeseyUI, please fork the repository and create a pull request.<br>
