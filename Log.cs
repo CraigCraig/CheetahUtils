@@ -53,8 +53,8 @@ public static class Log
     {
         StringBuilder sb = new();
         _ = sb.Append($"{Colors.White}");
-        var pcolor = Colors.Gray;
-        var lcolor = DefaultColor;
+        Color? pcolor = Colors.Gray;
+        Color lcolor = DefaultColor;
 
         if (level == Level.ERROR)
         {

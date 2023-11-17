@@ -22,7 +22,7 @@ internal static class VirtualTerminalSequences
 
     private static string SgrCommand(int num)
     {
-        var ret = SgrCommandBegin(num);
+        StringBuilder ret = SgrCommandBegin(num);
         _ = ret.Append('m');
         return ret.ToString();
     }

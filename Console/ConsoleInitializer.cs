@@ -57,7 +57,7 @@ public static partial class ConsoleInitializer
 
         if (WindowsUtils.GetVersion() >= 0x0A000000)
         {
-            var handle = WindowsUtils.GetStdHandle(-11);
+            nint handle = WindowsUtils.GetStdHandle(-11);
             if (WindowsUtils.GetConsoleMode(handle, out int mode))
             {
                 mode |= 0x0004;
@@ -73,10 +73,10 @@ public static partial class ConsoleInitializer
 
     private static void InitializeOutStream()
     {
-        var fs = CreateFileStream("CONOUT$", GENERIC_WRITE, FILE_SHARE_WRITE, FileAccess.Write);
+        FileStream? fs = CreateFileStream("CONOUT$", GENERIC_WRITE, FILE_SHARE_WRITE, FileAccess.Write);
         if (fs != null)
         {
-            var writer = new StreamWriter(fs) { AutoFlush = true };
+            StreamWriter writer = new StreamWriter(fs) { AutoFlush = true };
             Console.SetOut(writer);
             Console.SetError(writer);
         }
@@ -84,7 +84,7 @@ public static partial class ConsoleInitializer
 
     private static void InitializeInStream()
     {
-        var fs = CreateFileStream("CONIN$", GENERIC_READ, FILE_SHARE_READ, FileAccess.Read);
+        FileStream? fs = CreateFileStream("CONIN$", GENERIC_READ, FILE_SHARE_READ, FileAccess.Read);
         if (fs != null)
         {
             Console.SetIn(new StreamReader(fs));
@@ -93,10 +93,10 @@ public static partial class ConsoleInitializer
 
     private static FileStream? CreateFileStream(string name, uint win32DesiredAccess, uint win32ShareMode, FileAccess dotNetFileAccess)
     {
-        var file = new SafeFileHandle(CreateFileW(name, win32DesiredAccess, win32ShareMode, nint.Zero, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nint.Zero), true);
+        SafeFileHandle file = new SafeFileHandle(CreateFileW(name, win32DesiredAccess, win32ShareMode, nint.Zero, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nint.Zero), true);
         if (!file.IsInvalid)
         {
-            var fs = new FileStream(file, dotNetFileAccess);
+            FileStream fs = new FileStream(file, dotNetFileAccess);
             return fs;
         }
         return null;
