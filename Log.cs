@@ -2,22 +2,13 @@
 
 public static class Log
 {
-    private static readonly string _logFile = "latest.log";
+    private static string _logFile = "latest.log";
     private static bool _initialized = false;
     private static readonly List<string> _buffer = [];
 
     private static void Initialize()
     {
-        if (!File.Exists(_logFile))
-        {
-            _ = File.Create(_logFile);
-        }
-        else
-        {
-            File.Delete(_logFile);
-            _ = File.Create(_logFile);
-        }
-
+        SetPath(_logFile);
         Task task = Task.Run(() =>
         {
             _buffer.Add("Logger Initialized");
@@ -37,6 +28,21 @@ public static class Log
         });
 
         _initialized = true;
+    }
+
+    public static void SetPath(string path)
+    {
+        _logFile = path;
+        if (!File.Exists(_logFile))
+        {
+            _ = File.Create(_logFile);
+        }
+        else
+        {
+            File.Delete(_logFile);
+            _ = File.Create(_logFile);
+        }
+        _buffer.Add($"LogFile: {_logFile}");
     }
 
     public static void WriteLine(string line)
