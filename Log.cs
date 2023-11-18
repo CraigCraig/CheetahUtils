@@ -2,7 +2,7 @@
 
 public static class Log
 {
-    private static string _logFile = "latest.log";
+    private static string _logFile = $"{Environment.CurrentDirectory}latest.log";
     private static bool _initialized = false;
     private static readonly List<string> _buffer = [];
 
