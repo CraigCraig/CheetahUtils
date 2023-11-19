@@ -1,5 +1,7 @@
 ﻿namespace CheeseyUtils;
 
+using System.Reflection;
+
 /// <summary>
 /// Class specific to CheeseyUtils.
 /// </summary>
@@ -7,8 +9,11 @@ public static class CheeseyUtils
 {
     /// <summary>
     /// The version of CheeseyUtils.
+    /// Note:
+    /// Returns 0.0 if Version is null, this should never happen.
+    /// However
     /// </summary>
-    public static Version Version { get; } = new(1, 0, 0, 0, 0, Version.ReleaseChannel.Development);
+    public static Version Version { get; } = Assembly.GetEntryAssembly()?.GetName().Version ?? new(0, 0);
 
     /// <summary>
     /// Author of CheeseyUtils.
