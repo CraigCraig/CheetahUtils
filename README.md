@@ -1,28 +1,39 @@
-﻿# CheeseyUtils
-[![.NET](https://github.com/CraigCraig/CheeseyUtils/actions/workflows/release.yml/badge.svg)](https://github.com/CraigCraig/CheeseyUtils/actions/workflows/release.yml)
-[![.NET](https://github.com/CraigCraig/CheeseyUtils/actions/workflows/nightly.yml/badge.svg)](https://github.com/CraigCraig/CheeseyUtils/actions/workflows/nightly.yml)
+﻿# CheetahUtils
+[![.NET](https://github.com/CraigCraig/CheetahUtils/actions/workflows/release.yml/badge.svg)](https://github.com/CraigCraig/CheetahUtils/actions/workflows/release.yml)
+[![.NET](https://github.com/CraigCraig/CheetahUtils/actions/workflows/nightly.yml/badge.svg)](https://github.com/CraigCraig/CheetahUtils/actions/workflows/nightly.yml)
 
-A collection of utilities for C#.<br>
-This is a work in progress<br><br>
-Current stable version: Not Released<br>
-Current development version: 1.0.0
-## Table of Contents
-[Installation](#installation)<br>
-[Contributing](#contributing)<br>
-[License](#license)<br>
-[Maintainers](#maintainers)<br>
+:warning: This is a work in progress :warning:<br>
 
-## License
-CheeseyUtils is licensed under [MIT](LICENSE)
+Stable: none<br>
+Nightly: v0.0.1<br>
 
-## Maintainers
-[Craig Craig](https://github.com/CraigCraig) - Creator and Maintainer
+CheetahUtils is a collection of C# utilities.<br>
+It is a library that can be used in any C# project.<br>
+Since I use it in random projects, it will be updated often.<br>
+However, it will have no particular roadmap.<br>
+
+Currently being used in [CheetahToolbox](https://github.com/CraigCraig/CheetahToolbox) and other private projects.<br>
+
+## Building
+This project uses <a href="https://github.com/GoodKittyBot">GoodKitty</a><br>
+A bot that handles building, testing, and releasing.<br>
+GoodKitty is a private bot, so you will not be able to use it.<br>
+You can still build the project manually.<br>
 
 ## Contributing
-If you would like to contribute to CheeseyUtils, please fork the repository and create a pull request.<br>
+If you would like to contribute to CheetahUtils, please fork the repository and create a pull request.<br>
 Please make sure to document your code and add a description of your changes.<br>
 If you would like to report a bug or request a feature, please create an issue.<br>
 
+## Dependencies
+- External Projects :heart:
+    - [ ] [CliWrap](https://github.com/Tyrrrz/CliWrap)
+
+## License
+CheetahUtils is licensed under [MIT](LICENSE)<br>
+
 ## Roadmap
-### v1.0.1
-- [ ] Add more documentation
+### v1.0.0
+
+There's no roadmap for v1.0.0 yet.<br>
+Currently adding features as I need them.
