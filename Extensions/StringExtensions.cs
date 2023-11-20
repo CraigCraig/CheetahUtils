@@ -1,14 +1,14 @@
-﻿namespace CheeseyUtils.Extensions;
+﻿namespace CheetahUtils.Extensions;
 
 public static class StringExtensions
 {
-    public static string ToTitleCase(this string str)
-    {
-        string[] words = str.Split(' ');
-        for (int i = 0; i < words.Length; i++)
-        {
-            words[i] = $"{words[i][..1].ToUpper()}{words[i][1..].ToLower()}";
-        }
-        return string.Join(' ', words);
-    }
+	public static string ToTitleCase(this string str)
+	{
+		string[] words = str.Split(' ');
+		for (int i = 0; i < words.Length; i++)
+		{
+			words[i] = $"{words[i][..1].ToUpper()}{words[i][1..].ToLower()}";
+		}
+		return string.Join(' ', words);
+	}
 }

@@ -10,12 +10,12 @@
 	<Configurations>Debug;Release</Configurations>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(OS)' == 'Windows_NT' ">
-	<DefineConstants>OS_WINDOWS</DefineConstants>
+  <PropertyGroup Condition="'$(OS)' == 'Windows_NT' ">
+	<DefineConstants>WINDOWS</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(OS)' == 'Linux' ">
-	<DefineConstants>OS_LINUX</DefineConstants>
+  <PropertyGroup Condition="'$(OS)' == 'Linux' ">
+	<DefineConstants>LINUX</DefineConstants>
   </PropertyGroup>
 
 	<ItemGroup>

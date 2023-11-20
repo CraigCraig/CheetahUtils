@@ -1,4 +1,4 @@
-﻿#if OS_LINUX
+﻿#if LINUX
 namespace CheeseyUtils;
 
 internal class ServiceUtils
