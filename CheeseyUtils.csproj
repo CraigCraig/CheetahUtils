@@ -6,15 +6,15 @@
 	<Nullable>enable</Nullable>
 	<LangVersion>preview</LangVersion>
 	<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 	<Platforms>Windows;Linux</Platforms>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(OS)' == 'Windows_NT' ">
+  <PropertyGroup Condition=" '$(Release)' == 'Windows_NT' ">
 	<DefineConstants>OS_WINDOWS</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(OS)' == 'Linux' ">
+  <PropertyGroup Condition=" '$(Release)' == 'Linux' ">
 	<DefineConstants>OS_LINUX</DefineConstants>
   </PropertyGroup>
 
