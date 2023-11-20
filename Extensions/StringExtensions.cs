@@ -1,6 +1,6 @@
 ﻿namespace CheeseyUtils.Extensions;
 
-public static class Strings
+public static class StringExtensions
 {
     public static string ToTitleCase(this string str)
     {

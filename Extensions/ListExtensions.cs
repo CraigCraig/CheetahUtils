@@ -1,37 +1,37 @@
 ﻿namespace CheeseyUtils.Extensions;
 
-public static class Arrays
+public static class ListExtensions
 {
-    public static string[] ToUpperCase(this string[] list)
+    public static List<string> ToUpperCase(this List<string> list)
     {
-        for (int i = 0; i < list.Length; i++)
+        for (int i = 0; i < list.Count; i++)
         {
             list[i] = list[i].ToUpper();
         }
         return list;
     }
 
-    public static string[] ToLowerCase(this string[] list)
+    public static List<string> ToLowerCase(this List<string> list)
     {
-        for (int i = 0; i < list.Length; i++)
+        for (int i = 0; i < list.Count; i++)
         {
             list[i] = list[i].ToLower();
         }
         return list;
     }
 
-    public static string[] ToTitleCase(this string[] list)
+    public static List<string> ToTitleCase(this List<string> list)
     {
-        for (int i = 0; i < list.Length; i++)
+        for (int i = 0; i < list.Count; i++)
         {
             list[i] = list[i].ToTitleCase();
         }
         return list;
     }
 
-    public static string[] Shuffle(this string[] list)
+    public static List<string> Shuffle(this List<string> list)
     {
-        int n = list.Length;
+        int n = list.Count;
         while (n > 1)
         {
             n--;
