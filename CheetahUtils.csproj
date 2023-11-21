@@ -29,6 +29,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CliWrap" Version="3.6.5-test" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="build_info.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>build_info.cs</LastGenOutput>
