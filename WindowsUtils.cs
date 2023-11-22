@@ -6,11 +6,11 @@ using System.Security.Principal;
 
 public static class WindowsUtils
 {
-	[SupportedOSPlatform("windows")]
-	public static bool IsAdministrator()
+	[SupportedOSPlatform("WINDOWS")]
+	public static bool IsRunningAsAdmin()
 	{
-		var identity = WindowsIdentity.GetCurrent();
-		var principal = new WindowsPrincipal(identity);
+		WindowsIdentity identity = WindowsIdentity.GetCurrent();
+		WindowsPrincipal principal = new(identity);
 		return principal.IsInRole(WindowsBuiltInRole.Administrator);
 	}
 }

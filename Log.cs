@@ -62,4 +62,9 @@ public static class Log
 			_buffer.Add(line);
 		}
 	}
+
+	public static object ReadLine()
+	{
+		return Console.ReadLine() ?? "";
+	}
 }

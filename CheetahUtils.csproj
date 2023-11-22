@@ -1,21 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	
+
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-	<Nullable>enable</Nullable>
-	<LangVersion>preview</LangVersion>
-	<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-	<Platforms>Windows;Linux</Platforms>
-	<Configurations>Debug;Release</Configurations>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(OS)' == 'Windows_NT' ">
-	<DefineConstants>WINDOWS</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(OS)' == 'Linux' ">
-	<DefineConstants>LINUX</DefineConstants>
+	  <Nullable>enable</Nullable>
+	  <LangVersion>preview</LangVersion>
+	  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Platforms>Windows;Linux</Platforms>
+    <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
 
 	<ItemGroup>
@@ -33,22 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="build_info.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>build_info.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="build_info.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>build_info.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
 
 </Project>

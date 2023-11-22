@@ -1,4 +1,4 @@
-﻿namespace CheeseyUtils;
+﻿namespace CheetahUtils;
 
 using System.Text;
 using CliWrap;
