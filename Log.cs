@@ -2,7 +2,7 @@
 
 public static class Log
 {
-	private static string _logFile = $"{Environment.CurrentDirectory}latest.log";
+	private static string _logFile = Path.Combine($"{Environment.CurrentDirectory}", "latest.log");
 	private static bool _initialized = false;
 	private static readonly List<string> _buffer = [];
 
@@ -11,14 +11,13 @@ public static class Log
 		SetPath(_logFile);
 		Task task = Task.Run(() =>
 		{
-			_buffer.Add("Logger Initialized");
 			while (true)
 			{
 				lock (_buffer)
 				{
 					while (_buffer.Count > 0)
 					{
-						File.AppendAllText(_logFile, _buffer[0]);
+						//File.AppendAllText(_logFile, _buffer[0]);
 						Console.WriteLine(_buffer[0]);
 						_buffer.RemoveAt(0);
 					}
@@ -47,7 +46,7 @@ public static class Log
 
 	public static void WriteLine(string line)
 	{
-		InternalWrite($"line{Environment.NewLine}");
+		InternalWrite($"{line}{Environment.NewLine}");
 	}
 
 	private static void InternalWrite(string line)
@@ -61,10 +60,5 @@ public static class Log
 		{
 			_buffer.Add(line);
 		}
-	}
-
-	public static object ReadLine()
-	{
-		return Console.ReadLine() ?? "";
 	}
 }
