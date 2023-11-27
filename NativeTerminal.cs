@@ -3,7 +3,7 @@
 using System.Text;
 using CliWrap;
 
-public static class Terminal
+public static class NativeTerminal
 {
 	public static string Execute(string command, string[] args)
 	{

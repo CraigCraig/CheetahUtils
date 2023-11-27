@@ -2,63 +2,26 @@
 
 public static class Log
 {
-	private static string _logFile = Path.Combine($"{Environment.CurrentDirectory}", "latest.log");
-	private static bool _initialized = false;
-	private static readonly List<string> _buffer = [];
+	private static readonly string logFile = Path.Combine($"{Environment.CurrentDirectory}", "latest.log");
 
-	private static void Initialize()
+	public static void Clear()
 	{
-		SetPath(_logFile);
-		Task task = Task.Run(() =>
+		if (File.Exists(logFile))
 		{
-			while (true)
-			{
-				lock (_buffer)
-				{
-					while (_buffer.Count > 0)
-					{
-						//File.AppendAllText(_logFile, _buffer[0]);
-						Console.WriteLine(_buffer[0]);
-						_buffer.RemoveAt(0);
-					}
-				}
-				Thread.Sleep(1);
-			}
-		});
-
-		_initialized = true;
+			File.Delete(logFile);
+		}
 	}
 
-	public static void SetPath(string path)
+	public static void Write(string line)
 	{
-		_logFile = path;
-		if (!File.Exists(_logFile))
-		{
-			_ = File.Create(_logFile);
-		}
-		else
-		{
-			File.Delete(_logFile);
-			_ = File.Create(_logFile);
-		}
-		_buffer.Add($"LogFile: {_logFile}");
-	}
-
-	public static void WriteLine(string line)
-	{
-		InternalWrite($"{line}{Environment.NewLine}");
+		InternalWrite($"{line}");
 	}
 
 	private static void InternalWrite(string line)
 	{
-		if (!_initialized)
-		{
-			Initialize();
-		}
-
-		lock (_buffer)
-		{
-			_buffer.Add(line);
-		}
+        StreamWriter fs = File.AppendText(logFile);
+		fs.WriteLine(line);
+		fs.Flush();
+		fs.Close();
 	}
 }
