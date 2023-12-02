@@ -8,18 +8,18 @@ using System.Runtime.InteropServices;
 using Microsoft.Win32.SafeHandles;
 #endregion
 
-public class ConsoleUtils
+public static class ConsoleUtils
 {
 	[DllImport("kernel32.dll", SetLastError = true)]
-	static extern bool WriteConsoleOutputW(
-	  SafeFileHandle hConsoleOutput,
-	  CharInfo[] lpBuffer,
-	  Coord dwBufferSize,
-	  Coord dwBufferCoord,
-	  ref Rectangle lpWriteRegion);
+	public static extern bool WriteConsoleOutputW(
+		SafeFileHandle hConsoleOutput,
+		CharInfo[] lpBuffer,
+		Coord dwBufferSize,
+		Coord dwBufferCoord,
+		ref Rectangle lpWriteRegion);
 
 	[DllImport("Kernel32.dll", SetLastError = true, CharSet = CharSet.Auto)]
-	static extern SafeFileHandle CreateFile(
+	public static extern SafeFileHandle CreateFile(
 		string fileName,
 		[MarshalAs(UnmanagedType.U4)] uint fileAccess,
 		[MarshalAs(UnmanagedType.U4)] uint fileShare,
@@ -29,20 +29,20 @@ public class ConsoleUtils
 		IntPtr template);
 
 	[StructLayout(LayoutKind.Sequential)]
-	struct Coord(short x, short y)
+	public struct Coord(short x, short y)
 	{
 		public short x = x, y = y;
 	}
 
 	[StructLayout(LayoutKind.Explicit)]
-	struct CharInfo
+	public struct CharInfo
 	{
 		[FieldOffset(0)] public ushort Char;
 		[FieldOffset(2)] public short Attributes;
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
-	struct Rectangle(short left, short top, short right, short bottom)
+	public struct Rectangle(short left, short top, short right, short bottom)
 	{
 		public short left = left, top = top, right = right, bottom = bottom;
 	}

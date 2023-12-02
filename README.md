@@ -1,11 +1,9 @@
 ﻿# CheetahUtils
 [![.NET](https://github.com/CraigCraig/CheetahUtils/actions/workflows/release.yml/badge.svg)](https://github.com/CraigCraig/CheetahUtils/actions/workflows/release.yml)
-[![.NET](https://github.com/CraigCraig/CheetahUtils/actions/workflows/nightly.yml/badge.svg)](https://github.com/CraigCraig/CheetahUtils/actions/workflows/nightly.yml)
 
-:warning: This is a work in progress :warning:<br>
+⚠️ This is a work in progress ⚠️ <br>
 
-Stable: none<br>
-Nightly: v1.0.0<br>
+Stable: v1.0.0<br>
 
 CheetahUtils is a collection of C# utilities.<br>
 It is a library that can be used in any C# project.<br>

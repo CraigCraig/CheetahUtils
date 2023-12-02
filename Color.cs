@@ -131,6 +131,10 @@ public partial class Color
 		return HashCode.Combine(R, G, B, A);
 	}
 
+	/// <summary>
+	/// Convert this color to a string.
+	/// </summary>
+	/// <returns></returns>
 	public override string ToString()
 	{
 		return $"\x1b[{38};2;{R};{G};{B}m";
