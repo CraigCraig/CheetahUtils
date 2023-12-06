@@ -1,5 +1,5 @@
 ﻿#if LINUX
-namespace CheeseyUtils;
+namespace CheetahUtils;
 
 internal class ServiceUtils
 {
