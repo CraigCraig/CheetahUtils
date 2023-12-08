@@ -5,7 +5,7 @@ public static class Log
 	/// <summary>
 	/// Sets whether or not the logger prints the lines to the console
 	/// </summary>
-	public static bool PrintToConsole { get; private set; } = false;
+	public static bool PrintToConsole { get; set; }
 
 	private static readonly string logFile = Path.Combine($"{Environment.CurrentDirectory}", "latest.log");
 
