@@ -5,14 +5,28 @@ using CliWrap;
 
 public static class NativeTerminal
 {
+	/// <summary>
+	/// Executes a command in the native terminal
+	/// </summary>
+	/// <param name="command"></param>
+	/// <param name="args"></param>
+	/// <returns></returns>
 	public static string Execute(string command, string[] args)
 	{
-		StringBuilder sb = new();
-		var c = Cli.Wrap(command).WithArguments(args)
-			.WithStandardErrorPipe(PipeTarget.ToDelegate((s) => sb.AppendLine(s)))
-			.WithStandardOutputPipe(PipeTarget.ToDelegate((s) => sb.AppendLine(s)));
+		try
+		{
+            StringBuilder sb = new();
+            var c = Cli.Wrap(command).WithArguments(args)
+				.WithValidation(CommandResultValidation.None)
+                .WithStandardErrorPipe(PipeTarget.ToDelegate((s) => sb.AppendLine(s)))
+                .WithStandardOutputPipe(PipeTarget.ToDelegate((s) => sb.AppendLine(s)));
 
-		var result = c.ExecuteAsync().ConfigureAwait(false).GetAwaiter().GetResult();
-		return sb.ToString();
+            var result = c.ExecuteAsync().ConfigureAwait(false).GetAwaiter().GetResult();
+            return sb.ToString();
+        }
+		catch (Exception)
+		{
+            throw;
+        }
 	}
 }
