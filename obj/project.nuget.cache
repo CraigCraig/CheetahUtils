@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "V4bU6quhxDZAnmHQpZh3ur7y8td1z6lyLQHRUqJstJJfCHBYihNK2prddmaNnbo7pQ21/VbFLMjVUXOGzIeREw==",
+  "success": true,
+  "projectFilePath": "G:\\WanderingCheetah\\SuperProject\\Projects\\CheetahUtils\\CheetahUtils.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\craig\\.nuget\\packages\\cliwrap\\3.6.4\\cliwrap.3.6.4.nupkg.sha512",
+    "C:\\Users\\craig\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

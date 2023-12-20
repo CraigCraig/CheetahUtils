@@ -1,0 +1,43 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "G:\\WanderingCheetah\\SuperProject\\Projects\\CheetahUtils\\",
+  "Documents": [],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{57d563b6-44a5-47df-85be-f4199ad6b651}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 196,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{588470cc-84f8-4a57-9ac4-86bca0625ff4}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 196,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{4a9b7e51-aa16-11d0-a8c5-00a0c921a4d2}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

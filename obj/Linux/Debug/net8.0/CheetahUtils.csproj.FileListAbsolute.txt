@@ -1,0 +1,13 @@
+G:\WanderingCheetah\SuperProject\Projects\CheetahUtils\bin\Linux\Debug\net8.0\CheetahUtils.deps.json
+G:\WanderingCheetah\SuperProject\Projects\CheetahUtils\bin\Linux\Debug\net8.0\CheetahUtils.dll
+G:\WanderingCheetah\SuperProject\Projects\CheetahUtils\bin\Linux\Debug\net8.0\CheetahUtils.pdb
+G:\WanderingCheetah\SuperProject\Projects\CheetahUtils\obj\Linux\Debug\net8.0\CheetahUtils.csproj.AssemblyReference.cache
+G:\WanderingCheetah\SuperProject\Projects\CheetahUtils\obj\Linux\Debug\net8.0\CheetahUtils.GeneratedMSBuildEditorConfig.editorconfig
+G:\WanderingCheetah\SuperProject\Projects\CheetahUtils\obj\Linux\Debug\net8.0\CheetahUtils.AssemblyInfoInputs.cache
+G:\WanderingCheetah\SuperProject\Projects\CheetahUtils\obj\Linux\Debug\net8.0\CheetahUtils.AssemblyInfo.cs
+G:\WanderingCheetah\SuperProject\Projects\CheetahUtils\obj\Linux\Debug\net8.0\CheetahUtils.csproj.CoreCompileInputs.cache
+G:\WanderingCheetah\SuperProject\Projects\CheetahUtils\obj\Linux\Debug\net8.0\CheetahUtils.sourcelink.json
+G:\WanderingCheetah\SuperProject\Projects\CheetahUtils\obj\Linux\Debug\net8.0\CheetahUtils.dll
+G:\WanderingCheetah\SuperProject\Projects\CheetahUtils\obj\Linux\Debug\net8.0\refint\CheetahUtils.dll
+G:\WanderingCheetah\SuperProject\Projects\CheetahUtils\obj\Linux\Debug\net8.0\CheetahUtils.pdb
+G:\WanderingCheetah\SuperProject\Projects\CheetahUtils\obj\Linux\Debug\net8.0\ref\CheetahUtils.dll
