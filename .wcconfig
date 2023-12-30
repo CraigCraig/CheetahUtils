@@ -1,0 +1,9 @@
+<!--
+============================================================
+Wandering Cheetah Project Configuration File
+============================================================
+-->
+<CheetahProject>
+	<Name>CheetahUtils</Name>
+	<Description>Utilities for Wandering Cheetah projects.</Description>
+</CheetahProject>
