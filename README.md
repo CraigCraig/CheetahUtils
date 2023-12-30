@@ -1,4 +1,9 @@
 ﻿# CheetahUtils
+[![NuGet](https://img.shields.io/nuget/v/CheetahUtils.svg)](https://www.nuget.org/packages/CheetahUtils/)
+[![NuGet](https://img.shields.io/nuget/dt/CheetahUtils.svg)](https://www.nuget.org/packages/CheetahUtils/)
+[![GitHub](https://img.shields.io/github/license/CraigCraig/CheetahUtils.svg)](LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/CraigCraig/CheetahUtils.svg)](https://github.com/CraigCraig/CheetahUtils/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/CraigCraig/CheetahUtils.svg)](
 [![.NET](https://github.com/CraigCraig/CheetahUtils/actions/workflows/release.yml/badge.svg)](https://github.com/CraigCraig/CheetahUtils/actions/workflows/release.yml)
 
 ⚠️ This is a work in progress ⚠️ <br>
@@ -10,18 +15,21 @@ It is a library that can be used in any C# project.<br>
 Since I use it in random projects, it will be updated often.<br>
 However, it will have no particular roadmap.<br>
 
-Currently being used in [CheetahTerminal](https://github.com/CraigCraig/CheetahTerminal) and other private projects.<br>
+### Used By
+- [CheetahToolbox](https://github.com/CraigCraig/CheetahToolbox)
+- [CheetahTerminal](https://github.com/CraigCraig/CheetahTerminal)
 
-## Building
-This project uses <a href="https://github.com/GoodKittyBot">GoodKitty</a><br>
-A bot that handles building, testing, and releasing.<br>
-GoodKitty is a private bot, so you will not be able to use it.<br>
-You can still build the project manually.<br>
+## How to Use
+Add as a submodule
+```
+git submodule add https://github.com/CraigCraig/CheetahUtils.git
+```
 
 ## Contributing
 If you would like to contribute to CheetahUtils, please fork the repository and create a pull request.<br>
 Please make sure to document your code and add a description of your changes.<br>
-If you would like to report a bug or request a feature, please create an issue.<br>
+If you would like to report a bug or request a feature, please create an issue [here](https://github.com/CraigCraig/CheetahUtils/issues/new).<br>
+When you create an issue, please make sure to include as much information as possible.<br>
 
 ## Dependencies
 - External Projects :heart:
