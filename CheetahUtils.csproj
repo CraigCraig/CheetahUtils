@@ -1,31 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Wandering Cheetah's Common Utils -->
+<Project ToolsVersion="Current">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <LangVersion>latest</LangVersion>
-    <Platforms>Windows;Linux</Platforms>
-    <Configurations>Debug;Release</Configurations>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <Version>1.0.0</Version>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Platform)' == 'Windows' ">
-    <DefineConstants>WINDOWS</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Platform)' == 'Linux' ">
-    <DefineConstants>LINUX</DefineConstants>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="CliWrap" Version="3.6.4" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
-  </ItemGroup>
+  <Import Project="$(DefaultFiles)Library.csproj" />
 
 </Project>

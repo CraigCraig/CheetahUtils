@@ -1,11 +1,3 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
-# Actions used in this workflow:
-# http://github.com/actions/checkout
-# http://github.com/actions/cache
-# http://github.com/ncipollo/release-action
-
 name: "Release"
 
 on:

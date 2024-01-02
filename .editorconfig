@@ -1,0 +1,29 @@
+# Global .editorconfig file
+# ===========================================
+# Created and maintained by https://github.com/CraigCraig
+# ===========================================
+# This file is used by the Visual Studio Code editor to maintain consistent coding styles between editors and developers.
+# https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/code-style-rule-options?view=vs-2022
+# https://docs.microsoft.com/en-us/visualstudio/ide/editorconfig-code-style-settings-reference?view=vs-2022
+# http://editorconfig.org
+# ===========================================
+
+root = true
+
+# All files
+[*]
+charset = utf-8
+end_of_line = crlf
+indent_style = space
+indent_size = 2
+insert_final_newline = false
+trim_trailing_whitespace = true
+
+# C# Files
+[*.{cs,csproj}]
+ident_style = tab
+indent_size = 4
+
+# JSON Files
+[*.json]
+indent_size = 4
