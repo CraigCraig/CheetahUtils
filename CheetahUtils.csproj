@@ -1,11 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Wandering Cheetah's Common Utils -->
-<Project>
-
-    <Import Project="$(SolutionDir)Default\Library.csproj" />
+<!-- Cheetah Utils -->
+<Project Sdk="Microsoft.NET.Sdk" DefaultTargets="Build">
 
     <PropertyGroup>
         <ProjectName>CheetahUtils</ProjectName>
+        <OutputType>Library</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>true</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <EnableDefaultItems>false</EnableDefaultItems>
+        <Configurations>Release;Debug</Configurations>
+        <Platforms>Windows;Linux;MacOS</Platforms>
     </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Include="**\*.cs" Exclude="obj\**" />
+        <Content Include="**\*.md" />
+        <Content Include=".gitignore" />
+    </ItemGroup>
+
+    <!-- References -->
+	<ItemGroup>
+        <!-- CliWrap -->
+        <PackageReference Include="CliWrap" Version="3.6.5-test" />
+	</ItemGroup>
 
 </Project>

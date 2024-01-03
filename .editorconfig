@@ -19,11 +19,20 @@ indent_size = 2
 insert_final_newline = false
 trim_trailing_whitespace = true
 
-# C# Files
-[*.{cs,csproj}]
-ident_style = tab
-indent_size = 4
-
 # JSON Files
 [*.json]
 indent_size = 4
+ident_style = tab
+
+# Visual Studio Settings File
+[*.vssettings]
+indent_size = 4
+ident_style = tab
+
+# C# Files
+[*.{cs,csproj}]
+indent_size = 4
+ident_style = tab
+
+# Default severity for all analyzer diagnostics
+dotnet_analyzer_diagnostic.severity = none
