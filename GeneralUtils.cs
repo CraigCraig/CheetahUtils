@@ -1,4 +1,4 @@
-﻿namespace CheetahUtils;
+namespace CheetahUtils;
 
 using System;
 
@@ -35,8 +35,5 @@ public static class GeneralUtils
     /// <param name="cur">The current number.</param>
     /// <param name="max">The maximum number.</param>
     /// <returns>The percentage of the number.</returns>
-    public static int GetPercent(int cur, int max)
-    {
-        return cur / max * 100;
-    }
+    public static int GetPercent(int cur, int max) => cur / max * 100;
 }

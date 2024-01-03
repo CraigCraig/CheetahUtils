@@ -1,4 +1,4 @@
-﻿namespace CheetahUtils.Extensions;
+namespace CheetahUtils.Extensions;
 
 public static class ArrayExtensions
 {
@@ -6,7 +6,7 @@ public static class ArrayExtensions
     {
         for (int i = 0; i < list.Length; i++)
         {
-            list[i] = list[i].ToUpper();
+            list[i] = list[i].ToUpperInvariant();
         }
         return list;
     }
@@ -15,7 +15,7 @@ public static class ArrayExtensions
     {
         for (int i = 0; i < list.Length; i++)
         {
-            list[i] = list[i].ToLower();
+            list[i] = list[i].ToLowerInvariant();
         }
         return list;
     }

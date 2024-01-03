@@ -1,7 +1,8 @@
-﻿#if LINUX
+#if LINUX
 namespace CheetahUtils;
 
-internal class ServiceUtils
+public static class ServiceUtils
 {
+    // TODO: Implement ServiceUtils
 }
 #endif

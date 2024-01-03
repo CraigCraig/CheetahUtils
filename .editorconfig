@@ -24,6 +24,11 @@ trim_trailing_whitespace = true
 ident_style = tab
 indent_size = 4
 
+# MSBuild files
+[*.{props,targets,proj,msbuild}]
+ident_style = tab
+indent_size = 4
+
 # XML Files
 [*.xml]
 ident_style = tab
@@ -34,8 +39,47 @@ indent_size = 4
 ident_style = tab
 indent_size = 4
 
+# Default severity for all analyzer diagnostics
+dotnet_analyzer_diagnostic.severity = warning
+
+# Default severity for all styles
+dotnet_style_severity = warning
+
 # IDE0065: Misplaced using directive
 csharp_using_directive_placement = inside_namespace
 
 # IDE0160: Convert to block scoped namespace
 csharp_style_namespace_declarations = file_scoped
+
+# CA1401: P/Invokes should not be visible
+dotnet_diagnostic.CA1401.severity = none
+
+# SYSLIB1054: Use 'LibraryImportAttribute' instead of 'DllImportAttribute' to generate P/Invoke marshalling code at compile time
+dotnet_diagnostic.SYSLIB1054.severity = none
+
+# CA2101: Specify marshaling for P/Invoke string arguments
+dotnet_diagnostic.CA2101.severity = none
+
+# IDE0022: Use block body for method
+csharp_style_expression_bodied_methods = when_on_single_line
+
+# IDE0024: Use block body for operator
+csharp_style_expression_bodied_operators = when_on_single_line
+
+# IDE0011: Add braces
+csharp_prefer_braces = when_multiline
+
+# CA1051: Do not declare visible instance fields
+dotnet_diagnostic.CA1051.severity = none
+
+# IDE0046: Convert to conditional expression
+dotnet_style_prefer_conditional_expression_over_return = false
+
+# IDE0047: Remove unnecessary parentheses
+dotnet_style_parentheses_in_arithmetic_binary_operators = always_for_clarity
+
+# IDE0048: Add parentheses when necessary
+dotnet_style_parentheses_in_other_binary_operators = always_for_clarity
+
+# IDE0049: Use 'nameof' expression
+dotnet_style_prefer_inferred_tuple_names = true

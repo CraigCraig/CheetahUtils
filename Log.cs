@@ -1,4 +1,4 @@
-﻿namespace CheetahUtils;
+namespace CheetahUtils;
 
 public static class Log
 {
@@ -18,10 +18,7 @@ public static class Log
         }
     }
 
-    public static void Write(string line)
-    {
-        InternalWrite($"{line}");
-    }
+    public static void Write(string line) => InternalWrite($"{line}");
 
     private static void InternalWrite(string line)
     {

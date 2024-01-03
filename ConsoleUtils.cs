@@ -1,11 +1,10 @@
-﻿#if WINDOWS || EDITOR
-namespace CheetahTerminal;
+#if WINDOWS || EDITOR
+namespace CheetahUtils;
 
 #region Using Statements
-using System;
+using Microsoft.Win32.SafeHandles;
 using System.IO;
 using System.Runtime.InteropServices;
-using Microsoft.Win32.SafeHandles;
 #endregion
 
 public static class ConsoleUtils
@@ -23,10 +22,10 @@ public static class ConsoleUtils
         string fileName,
         [MarshalAs(UnmanagedType.U4)] uint fileAccess,
         [MarshalAs(UnmanagedType.U4)] uint fileShare,
-        IntPtr securityAttributes,
+        nint securityAttributes,
         [MarshalAs(UnmanagedType.U4)] FileMode creationDisposition,
         [MarshalAs(UnmanagedType.U4)] int flags,
-        IntPtr template);
+        nint template);
 
     [StructLayout(LayoutKind.Sequential)]
     public struct Coord(short x, short y)
@@ -37,7 +36,7 @@ public static class ConsoleUtils
     [StructLayout(LayoutKind.Explicit)]
     public struct CharInfo
     {
-        [FieldOffset(0)] public ushort Char;
+        [FieldOffset(0)] public ushort Character;
         [FieldOffset(2)] public short Attributes;
     }
 

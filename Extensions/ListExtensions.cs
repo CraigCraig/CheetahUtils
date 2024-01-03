@@ -5,7 +5,7 @@ public static class ListExtensions
     {
         for (int i = 0; i < list.Count; i++)
         {
-            list[i] = list[i].ToUpper();
+            list[i] = list[i].ToUpperInvariant();
         }
         return list;
     }
@@ -14,7 +14,7 @@ public static class ListExtensions
     {
         for (int i = 0; i < list.Count; i++)
         {
-            list[i] = list[i].ToLower();
+            list[i] = list[i].ToLowerInvariant();
         }
         return list;
     }

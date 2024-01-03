@@ -1,4 +1,7 @@
-﻿namespace CheetahUtils;
+namespace CheetahUtils;
+
+using System.Globalization;
+
 /// <summary>
 /// A class that represents a color.
 /// </summary>
@@ -73,17 +76,17 @@ public partial class Color
         hex = hex.Replace("#", "");
         if (hex.Length == 6)
         {
-            R = byte.Parse(hex[..2], System.Globalization.NumberStyles.HexNumber);
-            G = byte.Parse(hex.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
-            B = byte.Parse(hex.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
+            R = byte.Parse(hex[..2], NumberStyles.HexNumber, CultureInfo.InvariantCulture);
+            G = byte.Parse(hex.AsSpan(2, 2), NumberStyles.HexNumber, CultureInfo.InvariantCulture);
+            B = byte.Parse(hex.AsSpan(4, 2), NumberStyles.HexNumber, CultureInfo.InvariantCulture);
             A = 255;
         }
         else if (hex.Length == 8)
         {
-            R = byte.Parse(hex[..2], System.Globalization.NumberStyles.HexNumber);
-            G = byte.Parse(hex.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
-            B = byte.Parse(hex.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
-            A = byte.Parse(hex.Substring(6, 2), System.Globalization.NumberStyles.HexNumber);
+            R = byte.Parse(hex[..2], NumberStyles.HexNumber, CultureInfo.InvariantCulture);
+            G = byte.Parse(hex.AsSpan(2, 2), NumberStyles.HexNumber, CultureInfo.InvariantCulture);
+            B = byte.Parse(hex.AsSpan(4, 2), NumberStyles.HexNumber, CultureInfo.InvariantCulture);
+            A = byte.Parse(hex.AsSpan(6, 2), NumberStyles.HexNumber, CultureInfo.InvariantCulture);
         }
         else
         {
@@ -126,17 +129,11 @@ public partial class Color
     /// Get the hash code of this color.
     /// </summary>
     /// <returns></returns>
-    public override int GetHashCode()
-    {
-        return HashCode.Combine(R, G, B, A);
-    }
+    public override int GetHashCode() => HashCode.Combine(R, G, B, A);
 
     /// <summary>
     /// Convert this color to a string.
     /// </summary>
     /// <returns></returns>
-    public override string ToString()
-    {
-        return $"\x1b[{38};2;{R};{G};{B}m";
-    }
+    public override string ToString() => $"\x1b[{38};2;{R};{G};{B}m";
 }
