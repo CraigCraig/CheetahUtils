@@ -1,4 +1,4 @@
-﻿#if WINDOWS
+﻿#if WINDOWS || EDITOR
 namespace CheetahTerminal;
 
 #region Using Statements

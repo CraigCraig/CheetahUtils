@@ -22,17 +22,13 @@ trim_trailing_whitespace = true
 # JSON Files
 [*.json]
 indent_size = 4
-ident_style = tab
 
-# Visual Studio Settings File
-[*.vssettings]
+# XML Files
+[*.xml]
 indent_size = 4
-ident_style = tab
 
 # C# Files
 [*.{cs,csproj}]
-indent_size = 4
 ident_style = tab
+indent_size = 4
 
-# Default severity for all analyzer diagnostics
-dotnet_analyzer_diagnostic.severity = none
