@@ -21,10 +21,12 @@ trim_trailing_whitespace = true
 
 # JSON Files
 [*.json]
+ident_style = tab
 indent_size = 4
 
 # XML Files
 [*.xml]
+ident_style = tab
 indent_size = 4
 
 # C# Files
@@ -32,3 +34,8 @@ indent_size = 4
 ident_style = tab
 indent_size = 4
 
+# IDE0065: Misplaced using directive
+csharp_using_directive_placement = inside_namespace
+
+# IDE0160: Convert to block scoped namespace
+csharp_style_namespace_declarations = file_scoped
