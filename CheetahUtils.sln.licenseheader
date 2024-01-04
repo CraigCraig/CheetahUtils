@@ -8,7 +8,7 @@ extensions: .cs .cpp .h
 ///			Author: Craig Craig (https://github.com/CraigCraig)
 ///		License:     MIT License (http://opensource.org/licenses/MIT)
 /// ======================================================================
-extensions:  .xml .config .xsd .csproj
+extensions: .xml .config .xsd .csproj
 <!--
 ======================================================================
 		CheetahToolbox: (https://github.com/CraigCraig/CheetahToolbox)
@@ -19,3 +19,21 @@ extensions:  .xml .config .xsd .csproj
 		License:     MIT License (http://opensource.org/licenses/MIT)
 ======================================================================
 -->
+extensions: .editorconfig
+# Global .editorconfig file
+# ===========================================
+# Created and maintained by https://github.com/CraigCraig
+# ===========================================
+# This file is used by the Visual Studio Code editor to maintain consistent coding styles between editors and developers.
+# https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/code-style-rule-options?view=vs-2022
+# https://docs.microsoft.com/en-us/visualstudio/ide/editorconfig-code-style-settings-reference?view=vs-2022
+# http://editorconfig.org
+# ===========================================
+extensions: .gitignore
+# Global .gitignore file
+# ===========================================
+# Created and maintained by https://github.com/CraigCraig
+# ===========================================
+# This file is used by all of my projects.
+# It is a global .gitignore file that is used by all of my projects.
+# ===========================================
