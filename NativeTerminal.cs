@@ -10,7 +10,7 @@ public static class NativeTerminal
     /// <param name="command"></param>
     /// <param name="args"></param>
     /// <returns></returns>
-    public static string Execute(string command, string[] args)
+    public static string? Execute(string command, string[] args)
     {
         try
         {
@@ -23,9 +23,9 @@ public static class NativeTerminal
             CommandResult result = c.ExecuteAsync().ConfigureAwait(false).GetAwaiter().GetResult();
             return sb.ToString();
         }
-        catch (Exception)
+        catch
         {
-            throw;
+            return null;
         }
     }
 }
