@@ -1,6 +1,5 @@
-﻿namespace CheetahUtils;
+namespace CheetahUtils;
 
-using System.Text;
 using CliWrap;
 
 public static class NativeTerminal

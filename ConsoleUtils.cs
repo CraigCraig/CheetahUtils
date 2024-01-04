@@ -3,7 +3,6 @@ namespace CheetahUtils;
 
 #region Using Statements
 using Microsoft.Win32.SafeHandles;
-using System.IO;
 using System.Runtime.InteropServices;
 #endregion
 

@@ -1,7 +1,5 @@
 namespace CheetahUtils;
 
-using System.Globalization;
-
 /// <summary>
 /// A class that represents a color.
 /// </summary>

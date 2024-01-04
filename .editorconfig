@@ -42,9 +42,6 @@ indent_size = 4
 # Default severity for all analyzer diagnostics
 dotnet_analyzer_diagnostic.severity = warning
 
-# Default severity for all styles
-dotnet_style_severity = warning
-
 # IDE0065: Misplaced using directive
 csharp_using_directive_placement = inside_namespace
 

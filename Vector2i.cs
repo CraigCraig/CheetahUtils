@@ -1,8 +1,5 @@
 namespace CheetahUtils;
 
-using System;
-using System.Collections.Generic;
-
 public class Vector2i(int x = 0, int y = 0)
 {
     public int X = x;
