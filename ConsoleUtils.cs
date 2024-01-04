@@ -1,48 +1,44 @@
+/// ======================================================================
+///		CheetahToolbox: (https://github.com/CraigCraig/CheetahToolbox)
+///				Project:  Craig's CheetahToolbox a Swiss Army Knife
+///
+///
+///			Author: Craig Craig (https://github.com/CraigCraig)
+///		License:     MIT License (http://opensource.org/licenses/MIT)
+/// ======================================================================
 #if WINDOWS || EDITOR
 namespace CheetahUtils;
 
-#region Using Statements
-using Microsoft.Win32.SafeHandles;
-using System.Runtime.InteropServices;
-#endregion
+using System.Runtime.Versioning;
 
 public static class ConsoleUtils
 {
-    [DllImport("kernel32.dll", SetLastError = true)]
-    public static extern bool WriteConsoleOutputW(
-        SafeFileHandle hConsoleOutput,
-        CharInfo[] lpBuffer,
-        Coord dwBufferSize,
-        Coord dwBufferCoord,
-        ref Rectangle lpWriteRegion);
-
-    [DllImport("Kernel32.dll", SetLastError = true, CharSet = CharSet.Auto)]
-    public static extern SafeFileHandle CreateFile(
-        string fileName,
-        [MarshalAs(UnmanagedType.U4)] uint fileAccess,
-        [MarshalAs(UnmanagedType.U4)] uint fileShare,
-        nint securityAttributes,
-        [MarshalAs(UnmanagedType.U4)] FileMode creationDisposition,
-        [MarshalAs(UnmanagedType.U4)] int flags,
-        nint template);
-
-    [StructLayout(LayoutKind.Sequential)]
-    public struct Coord(short x, short y)
+    public enum ColorType : int
     {
-        public short x = x, y = y;
+        FOREGROUND = 38,
+        BACKGROUND = 48
     }
 
-    [StructLayout(LayoutKind.Explicit)]
-    public struct CharInfo
+    [SupportedOSPlatform("windows")]
+    public static void AppendTitle(string value) => Console.Title = $"{Console.Title} {value}";
+
+    public static void SetColor(ColorType type, Color color)
     {
-        [FieldOffset(0)] public ushort Character;
-        [FieldOffset(2)] public short Attributes;
+        switch (type)
+        {
+            case ColorType.FOREGROUND:
+                Console.Write(ForegroundColor(color));
+                break;
+            case ColorType.BACKGROUND:
+                Console.Write(BackgroundColor(color));
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(type), type, null);
+        }
     }
 
-    [StructLayout(LayoutKind.Sequential)]
-    public struct Rectangle(short left, short top, short right, short bottom)
-    {
-        public short left = left, top = top, right = right, bottom = bottom;
-    }
+    public static string ForegroundColor(Color color) => $"\x1b[{38};2;{color.R};{color.G};{color.B}m";
+
+    public static string BackgroundColor(Color color) => $"\x1b[{48};2;{color.R};{color.G};{color.B}m";
 }
 #endif

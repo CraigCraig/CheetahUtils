@@ -6,6 +6,11 @@
 		<OutputType>Library</OutputType>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <None Include="Color2.cs2" />
+	  <None Include="Colors.cs2" />
+	</ItemGroup>
+
 	<!-- References -->
 	<ItemGroup>
 		<!-- CliWrap -->

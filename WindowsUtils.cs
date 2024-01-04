@@ -1,4 +1,12 @@
-#if WINDOWS || EDITOR
+/// ======================================================================
+///		CheetahToolbox: (https://github.com/CraigCraig/CheetahToolbox)
+///				Project:  Craig's CheetahToolbox a Swiss Army Knife
+///
+///
+///			Author: Craig Craig (https://github.com/CraigCraig)
+///		License:     MIT License (http://opensource.org/licenses/MIT)
+/// ======================================================================
+#if WINDOWS || WINDOWS_FAKE
 namespace CheetahUtils;
 
 using System.Runtime.InteropServices;
@@ -14,55 +22,64 @@ public static class WindowsUtils
         WindowsPrincipal principal = new(identity);
         return principal.IsInRole(WindowsBuiltInRole.Administrator);
     }
-}
 
-public static class FileUtils
-{
-    public static bool IsSymbolic(string path)
+    private const string Kernel32 = "kernel32.dll";
+    private const string User32 = "user32.dll";
+
+    [DllImport(User32)]
+    internal static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
+
+    [DllImport(User32)]
+    internal static extern IntPtr GetForegroundWindow();
+
+    [DllImport(Kernel32, EntryPoint = "GetVersion", SetLastError = true)]
+    internal static extern int GetVersion();
+
+    [DllImport(Kernel32, EntryPoint = "SetConsoleMode", SetLastError = true)]
+    internal static extern bool SetConsoleMode(IntPtr hConsoleHandle, int mode);
+
+    [DllImport(Kernel32, EntryPoint = "GetConsoleMode", SetLastError = true)]
+    internal static extern bool GetConsoleMode(IntPtr handle, out int mode);
+
+    internal static void Initialize()
     {
-        FileInfo pathInfo = new(path);
-        return pathInfo.Attributes.HasFlag(FileAttributes.ReparsePoint);
+        IntPtr handle = GetStdHandle(-11);
+        _ = GetConsoleMode(handle, out int mode);
+        _ = SetConsoleMode(handle, mode | 0x4);
     }
-}
 
-public static class ShortcutUtils
-{
+    [DllImport(Kernel32, EntryPoint = "GetStdHandle", SetLastError = true)]
+    internal static extern IntPtr GetStdHandle(int handle);
+
+    [DllImport(User32)]
+    internal static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+
+    private static IntPtr _handle;
+
     /// <summary>
-    /// WIP: Checks if a Shortcut has a valid target
+    /// Gets or sets whether the console should be shown.
     /// </summary>
-    /// <param name="path"></param>
-    /// <returns></returns>
-    public static bool IsValid(string path) => false;
-
-    private sealed class NativeMethods
+    /// <param name="flag"></param>
+    internal static void ShowConsole(bool flag)
     {
-        [DllImport("msi.dll", CharSet = CharSet.Auto)]
-        public static extern uint MsiGetShortcutTarget(string targetFile, StringBuilder productCode, StringBuilder featureID, StringBuilder componentCode);
+        const int SW_HIDE = 0;
+        const int SW_SHOW = 5;
 
-        [DllImport("msi.dll", CharSet = CharSet.Auto)]
-        public static extern InstallState MsiGetComponentPath(string productCode, string componentCode, StringBuilder componentPath, ref int componentPathBufferSize);
+        _handle = GetStdHandle(-11);
+        _ = flag ? ShowWindow(_handle, SW_SHOW) : ShowWindow(_handle, SW_HIDE);
+    }
 
-        public const int MaxFeatureLength = 38;
-        public const int MaxGuidLength = 38;
-        public const int MaxPathLength = 1024;
-
-        public enum InstallState
+    /// <summary>
+    /// Gets or sets the console mode.
+    /// </summary>
+    internal static int ConsoleMode
+    {
+        get
         {
-            NotUsed = -7,
-            BadConfig = -6,
-            Incomplete = -5,
-            SourceAbsent = -4,
-            MoreData = -3,
-            InvalidArg = -2,
-            Unknown = -1,
-            Broken = 0,
-            Removed = 1,
-            Absent = 2,
-            Local = 3,
-            Source = 4,
-            Default = 5
+            _ = GetConsoleMode(_handle, out int mode);
+            return mode;
         }
+        set => SetConsoleMode(_handle, value);
     }
 }
-
 #endif
