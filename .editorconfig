@@ -83,3 +83,6 @@ dotnet_style_prefer_inferred_tuple_names = true
 
 # CA1305: Specify IFormatProvider
 dotnet_diagnostic.CA1305.severity = none
+
+# CA1838: Avoid 'StringBuilder' parameters for P/Invokes
+dotnet_diagnostic.CA1838.severity = none
