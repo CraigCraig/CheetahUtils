@@ -89,3 +89,6 @@ dotnet_diagnostic.CA1305.severity = none
 
 # CA1838: Avoid 'StringBuilder' parameters for P/Invokes
 dotnet_diagnostic.CA1838.severity = none
+
+# IDE0290: Use primary constructor
+dotnet_diagnostic.IDE0290.severity = suggestion
