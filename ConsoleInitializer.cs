@@ -61,7 +61,7 @@ internal static class ConsoleInitializer
         }
     }
 
-    private static void UnhandledException(object sender, UnhandledExceptionEventArgs e) => Log.Exception(e);
+    private static void UnhandledException(object sender, UnhandledExceptionEventArgs e) => Console.WriteLine(e);
 
     private static void InitializeOutStream()
     {

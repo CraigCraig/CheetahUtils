@@ -13,15 +13,28 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 #endregion
 
-public static class Log
+/// <summary>
+/// Logger class for CheetahUtils
+/// </summary>
+public class Logger
 {
-    public static LogLevel Level { get; set; } = LogLevel.NONE;
-
-    private static bool _initialized;
+    public LogLevel Level { get; set; }
+    public string Prefix;
 
     private static readonly string _folderPath = $@"{Environment.CurrentDirectory}\Logs";
     private static readonly string _logPath = $@"{_folderPath}\latest.log";
     private static readonly string _oldLogPath = $"{_folderPath}{$@"\old_{(DateTime.Now - DateTime.MinValue).TotalMilliseconds}.log"}";
+
+    public Logger(string? prefix, LogLevel level = LogLevel.WARNING)
+    {
+        Level = level;
+        Prefix = prefix ?? "N/A";
+
+        if (!Directory.Exists(_folderPath)) _ = Directory.CreateDirectory(_folderPath);
+        if (File.Exists(_logPath)) File.Move(_logPath, _oldLogPath);
+
+        Write($"Logger for {Prefix} initialized..");
+    }
 
     public enum LogLevel
     {
@@ -38,7 +51,7 @@ public static class Log
     /// <summary>
     /// Opens the latest log file in Notepad
     /// </summary>
-    public static void OpenLatestLogFile()
+    public void OpenLatestLogFile()
     {
         try
         {
@@ -57,7 +70,7 @@ public static class Log
     /// <param name="code"></param>
     /// <param name="name"></param>
     /// <param name="line"></param>
-    public static void Exception<T>(T ex, string code = "", [CallerMemberName] string name = "", [CallerLineNumber] int line = -1)
+    public void Exception<T>(T ex, string code = "", [CallerMemberName] string name = "", [CallerLineNumber] int line = -1)
     {
         Write($"[{name}] [{line}] An Exception Occurred -> {ex?.GetType()}", LogLevel.ERROR);
         if (!string.IsNullOrEmpty(code))
@@ -91,9 +104,9 @@ public static class Log
     /// Writes a line to the logger as <see cref="LogLevel.ERROR"/>
     /// </summary>
     /// <param name="line"></param>
-    public static void Error(string msg, [CallerMemberName] string name = "", [CallerLineNumber] int line = -1)
+    public void Error(string msg, [CallerMemberName] string name = "", [CallerLineNumber] int line = -1)
     {
-        Write($"An Error Occured");
+        Write($"An Error Occurred");
         Write($"CallerName: {name}", LogLevel.ERROR);
         Write($"CallerLine: {line}", LogLevel.ERROR);
         Write($"{msg}", LogLevel.ERROR);
@@ -104,19 +117,19 @@ public static class Log
     /// This particular method does not use the <see cref="CallerMemberName"/> and <see cref="CallerLineNumber"/> attributes
     /// </summary>
     /// <param name="msg"></param>
-    public static void ErrorNoCall(string msg) => Write(!string.IsNullOrEmpty(msg) ? $"An Error Occured: {msg}" : $"An Error Occured");
+    public void ErrorNoCall(string msg) => Write(!string.IsNullOrEmpty(msg) ? $"An Error Occurred: {msg}" : $"An Error Occurred");
 
     /// <summary>
     /// Writes a line to the logger as <see cref="LogLevel.FINE"/>
     /// </summary>
     /// <param name="line"></param>
-    public static void Fine(string line) => Write($"{line}", Color.Grey, LogLevel.FINE);
+    public void Fine(string line) => Write($"{line}", Color.Grey, LogLevel.FINE);
 
     /// <summary>
     /// Writes a line to the logger as <see cref="LogLevel.SUPER"/> if client is in Super mode
     /// </summary>
     /// <param name="line"></param>
-    public static void Super(string line) =>
+    public void Super(string line) =>
             //if (Config.Data.Logger.Super)
             Write($"{line}", Color.Grey, LogLevel.SUPER);
 
@@ -124,7 +137,7 @@ public static class Log
     /// Writes a line to the logger as <see cref="LogLevel.SUPER"/> if client is in Super mode
     /// </summary>
     /// <param name="line"></param>
-    public static void Super(string line, Color color) =>
+    public void Super(string line, Color color) =>
             //if (Config.Data.Logger.Super)
             Write($"{line}", color, LogLevel.SUPER);
 
@@ -132,43 +145,43 @@ public static class Log
     /// Writes a line to the logger as <see cref="LogLevel.INFO"/>
     /// </summary>
     /// <param name="line"></param>
-    public static void Info(string line) => Write($"{line}", Color.Grey, LogLevel.INFO);
+    public void Info(string line) => Write($"{line}", Color.Grey, LogLevel.INFO);
 
     /// <summary>
     /// Writes a line to the logger as <see cref="LogLevel.ATTENTION"/>
     /// </summary>
     /// <param name="line"></param>
-    public static void Attention(string line) => Write($"{line}", Color.CheetoYellow, LogLevel.ATTENTION);
+    public void Attention(string line) => Write($"{line}", Color.CheetoYellow, LogLevel.ATTENTION);
 
     /// <summary>
     /// Writes a line to the logger as <see cref="LogLevel.DEBUG"/>
     /// </summary>
     /// <param name="line"></param>
-    public static void Debug(string line) => Write($"{line}", Color.White, LogLevel.DEBUG);
+    public void Debug(string line) => Write($"{line}", Color.White, LogLevel.DEBUG);
 
     /// <summary>
     /// Writes a line to the logger as <see cref="LogLevel.DEBUG"/>
     /// </summary>
     /// <param name="line"></param>
     /// <param name="color"></param>
-    public static void Debug(string line, System.Drawing.Color color) => Write($"{line}", new Color(color.R, color.G, color.B), LogLevel.DEBUG);
+    public void Debug(string line, System.Drawing.Color color) => Write($"{line}", new Color(color.R, color.G, color.B), LogLevel.DEBUG);
 
     /// <summary>
     /// Writes a line to the logger as <see cref="LogLevel.DEBUG"/>
     /// </summary>
     /// <param name="line"></param>
-    public static void Debug(string line, Color color) => Write($"{line}", color, LogLevel.DEBUG);
+    public void Debug(string line, Color color) => Write($"{line}", color, LogLevel.DEBUG);
 
     /// <summary>
     /// Writes a line to the logger as <see cref="LogLevel.WARNING"/>
     /// </summary>
     /// <param name="line"></param>
-    public static void Warn(string line) => Write($"{line}", LogLevel.WARNING);
+    public void Warn(string line) => Write($"{line}", LogLevel.WARNING);
 
     /// <summary>
     /// Logs "----------------------" to the logger.
     /// </summary>
-    public static void Bars()
+    public void Bars()
     {
         Write(string.Empty, Color.Black, noNewline: true);
         for (int i = 0; i < 16; i++)
@@ -183,7 +196,7 @@ public static class Log
     /// </summary>
     /// <param name="message"></param>
     /// <param name="level"></param>
-    public static void Write(string message, LogLevel level = LogLevel.INFO) => Write(message, Color.White, level);
+    public void Write(string message, LogLevel level = LogLevel.INFO) => Write(message, Color.White, level);
 
     /// <summary>
     /// Writes a line to the logger, with a specific <see cref="System.Drawing.Color"/>.
@@ -191,9 +204,9 @@ public static class Log
     /// <param name="message"></param>
     /// <param name="color"></param>
     /// <param name="level"></param>
-    public static void Write(string message, System.Drawing.Color color, LogLevel level = LogLevel.INFO) => Write(message, new Color(color.R, color.G, color.B), level);
+    public void Write(string message, System.Drawing.Color color, LogLevel level = LogLevel.INFO) => Write(message, new Color(color.R, color.G, color.B), level);
 
-    public static void Append(string message, Color? color)
+    public void Append(string message, Color? color)
     {
         Color lcolor = color ?? Color.White;
         Write(message, lcolor, append: true);
@@ -205,7 +218,7 @@ public static class Log
     /// <param name="message"></param>
     /// <param name="color"></param>
     /// <param name="level"></param>
-    public static void Write(string message, Color color, LogLevel level = LogLevel.INFO, bool append = false, bool noNewline = false)
+    public void Write(string message, Color color, LogLevel level = LogLevel.INFO, bool append = false, bool noNewline = false)
     {
         if (append)
         {
@@ -262,15 +275,7 @@ public static class Log
 
     private static void PublicWrite(string message, Color color)
     {
-        if (!_initialized) Initialize();
         Console.Write($"{ConsoleUtils.ForegroundColor(color)}{message}");
         File.AppendAllText(_logPath, message);
-    }
-
-    private static void Initialize()
-    {
-        if (!Directory.Exists(_folderPath)) _ = Directory.CreateDirectory(_folderPath);
-        if (File.Exists(_logPath)) File.Move(_logPath, _oldLogPath);
-        _initialized = true;
     }
 }
