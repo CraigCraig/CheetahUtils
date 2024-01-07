@@ -1,6 +1,6 @@
 /// ======================================================================
-///		CheetahToolbox: (https://github.com/CraigCraig/CheetahToolbox)
-///				Project:  Craig's CheetahToolbox a Swiss Army Knife
+///		CheetahUtils: (https://github.com/CraigCraig/CheetahUtils)
+///				Project:  Craig's CheetahUtils a Collection of C# Utils
 ///
 ///
 ///			Author: Craig Craig (https://github.com/CraigCraig)
