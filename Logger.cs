@@ -20,20 +20,40 @@ public class Logger
 {
     public LogLevel Level { get; set; }
     public string Prefix;
+    public Color PrefixColor;
+    public Color BracketColor;
+    public bool DisplayTime;
 
-    private static readonly string _folderPath = $@"{Environment.CurrentDirectory}\Logs";
-    private static readonly string _logPath = $@"{_folderPath}\latest.log";
-    private static readonly string _oldLogPath = $"{_folderPath}{$@"\old_{(DateTime.Now - DateTime.MinValue).TotalMilliseconds}.log"}";
+    public string FolderPath = $@"{Environment.CurrentDirectory}\Logs";
+    public string LogPath;
+    public string OldLogPath;
 
-    public Logger(string? prefix, LogLevel level = LogLevel.WARNING)
+    public Logger(string? prefix, LogLevel level = LogLevel.INFO)
     {
         Level = level;
+        PrefixColor = Color.Gray;
+        BracketColor = Color.Gray;
         Prefix = prefix ?? "N/A";
 
-        if (!Directory.Exists(_folderPath)) _ = Directory.CreateDirectory(_folderPath);
-        if (File.Exists(_logPath)) File.Move(_logPath, _oldLogPath);
+        if (!string.IsNullOrEmpty(prefix))
+        {
+            LogPath = Path.Combine(FolderPath, $"latest.{prefix.ToLower(CultureInfo.CurrentCulture)}.log");
+        }
 
-        Write($"Logger for {Prefix} initialized..");
+        OldLogPath = Path.Combine(FolderPath, $@"\old_{(DateTime.Now - DateTime.MinValue).TotalMilliseconds}.log");
+
+        if (!Directory.Exists(FolderPath)) _ = Directory.CreateDirectory(FolderPath);
+        if (File.Exists(LogPath)) File.Move(LogPath, OldLogPath);
+#if DEBUG && EDITOR && VERBOSE
+        if (!string.IsNullOrEmpty(Prefix))
+        {
+            Write($"Logger for {Prefix} initialized..");
+        }
+        else
+        {
+            Write($"Logger initialized..");
+        }
+#endif
     }
 
     public enum LogLevel
@@ -55,11 +75,11 @@ public class Logger
     {
         try
         {
-            _ = Process.Start(_logPath);
+            _ = Process.Start(LogPath);
         }
         catch (Exception e)
         {
-            Error($"Failed to open Log: {e.Message} - {_logPath}");
+            Error($"Failed to open Log: {e.Message} - {LogPath}");
         }
     }
 
@@ -244,24 +264,28 @@ public class Logger
                 if (level == LogLevel.ERROR)
                     lcolor = Color.Crayola.Original.Red;
 
-                CultureInfo ci = CultureInfo.InvariantCulture;
-                PublicWrite($"[", Color.Random);
-                PublicWrite($"{DateTime.Now.ToString("hh:mm:ss.fff", ci)}", Color.Crayola.Present.BananaMania);
-                PublicWrite($"] ", Color.Random);
+                CultureInfo ci = CultureInfo.CurrentCulture;
+                if (DisplayTime)
+                {
+                    PublicWrite($"[", BracketColor);
+                    PublicWrite($"{DateTime.Now.ToString("hh:mm:ss.fff", ci)}", Color.Crayola.Present.BananaMania);
+                    PublicWrite($"] ", BracketColor);
+                }
 
-                PublicWrite($"[", Color.Random);
-                PublicWrite($"CheetoClient", Color.CheetoOrange);
-                PublicWrite($"] ", Color.Random);
-
-                PublicWrite($"[", Color.Random);
+                PublicWrite($"[", BracketColor);
                 PublicWrite($"{Enum.GetName(typeof(LogLevel), level)}", lcolor);
-                PublicWrite($"] ", Color.Random);
+                PublicWrite($"] ", BracketColor);
+
+                PublicWrite($"[", BracketColor);
+                PublicWrite($"{Prefix}", PrefixColor);
+                PublicWrite($"] ", BracketColor);
+
                 PublicWriteLine(message, color, noNewline);
             }
         }
     }
 
-    private static void PublicWriteLine(string message, Color color, bool noNewline = false)
+    private void PublicWriteLine(string message, Color color, bool noNewline = false)
     {
         if (noNewline)
         {
@@ -273,9 +297,13 @@ public class Logger
         }
     }
 
-    private static void PublicWrite(string message, Color color)
+    private void PublicWrite(string message, Color color)
     {
+#if WINDOWS
         Console.Write($"{ConsoleUtils.ForegroundColor(color)}{message}");
-        File.AppendAllText(_logPath, message);
+#else
+        Console.Write($"{message}");
+#endif
+        File.AppendAllText(LogPath, message);
     }
 }

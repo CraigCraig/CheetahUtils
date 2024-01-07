@@ -6,7 +6,7 @@
 ///			Author: Craig Craig (https://github.com/CraigCraig)
 ///		License:     MIT License (http://opensource.org/licenses/MIT)
 /// ======================================================================
-#if WINDOWS || EDITOR
+#if WINDOWS
 namespace CheetahUtils;
 
 using System.Runtime.Versioning;
