@@ -6,9 +6,10 @@
 ///			Author: Craig Craig (https://github.com/CraigCraig)
 ///		License:     MIT License (http://opensource.org/licenses/MIT)
 /// ======================================================================
-#if WINDOWS || WINDOWS_FAKE
+#if WINDOWS
 namespace CheetahUtils;
 
+using Microsoft.Win32;
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
 using System.Security.Principal;
@@ -23,6 +24,43 @@ public static class WindowsUtils
         return principal.IsInRole(WindowsBuiltInRole.Administrator);
     }
 
+    public static bool IsWin11()
+    {
+        try
+        {
+            RegistryKey? key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion");
+            if (key != null)
+            {
+                int osBuild = Convert.ToInt32(key.GetValue("CurrentBuildNumber"));
+                if (osBuild >= 21996)
+                {
+                    return true;
+                }
+            }
+        }
+        catch { }
+        return false;
+    }
+
+    public static string GetVersion()
+    {
+        RegistryKey? key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion");
+        if (key != null)
+        {
+            string? UBR = key?.GetValue("UBR")?.ToString();
+            string? CurrentBuild = key?.GetValue("CurrentBuild")?.ToString();
+
+            if (!string.IsNullOrEmpty(UBR) && !string.IsNullOrEmpty(CurrentBuild))
+            {
+                string version = CurrentBuild + "." + UBR;
+
+                return "Build " + version;
+            }
+        }
+
+        return "N/A";
+    }
+
     private const string Kernel32 = "kernel32.dll";
     private const string User32 = "user32.dll";
 
@@ -33,7 +71,7 @@ public static class WindowsUtils
     internal static extern IntPtr GetForegroundWindow();
 
     [DllImport(Kernel32, EntryPoint = "GetVersion", SetLastError = true)]
-    internal static extern int GetVersion();
+    internal static extern int GetVersion2();
 
     [DllImport(Kernel32, EntryPoint = "SetConsoleMode", SetLastError = true)]
     internal static extern bool SetConsoleMode(IntPtr hConsoleHandle, int mode);

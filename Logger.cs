@@ -35,25 +35,14 @@ public class Logger
         BracketColor = Color.Gray;
         Prefix = prefix ?? "N/A";
 
-        if (!string.IsNullOrEmpty(prefix))
-        {
-            LogPath = Path.Combine(FolderPath, $"latest.{prefix.ToLower(CultureInfo.CurrentCulture)}.log");
-        }
+        LogPath = !string.IsNullOrEmpty(prefix)
+            ? Path.Combine(FolderPath, $"latest.{prefix.ToLower(CultureInfo.CurrentCulture)}.log")
+            : Path.Combine(FolderPath, $"latest.log");
 
         OldLogPath = Path.Combine(FolderPath, $@"\old_{(DateTime.Now - DateTime.MinValue).TotalMilliseconds}.log");
 
         if (!Directory.Exists(FolderPath)) _ = Directory.CreateDirectory(FolderPath);
         if (File.Exists(LogPath)) File.Move(LogPath, OldLogPath);
-#if DEBUG && EDITOR && VERBOSE
-        if (!string.IsNullOrEmpty(Prefix))
-        {
-            Write($"Logger for {Prefix} initialized..");
-        }
-        else
-        {
-            Write($"Logger initialized..");
-        }
-#endif
     }
 
     public enum LogLevel
@@ -216,7 +205,7 @@ public class Logger
     /// </summary>
     /// <param name="message"></param>
     /// <param name="level"></param>
-    public void Write(string message, LogLevel level = LogLevel.INFO) => Write(message, Color.White, level);
+    public void Write(string? message, LogLevel level = LogLevel.INFO) => Write(message, Color.White, level);
 
     /// <summary>
     /// Writes a line to the logger, with a specific <see cref="System.Drawing.Color"/>.
@@ -238,8 +227,9 @@ public class Logger
     /// <param name="message"></param>
     /// <param name="color"></param>
     /// <param name="level"></param>
-    public void Write(string message, Color color, LogLevel level = LogLevel.INFO, bool append = false, bool noNewline = false)
+    public void Write(string? message, Color color, LogLevel level = LogLevel.INFO, bool append = false, bool noNewline = false)
     {
+        if (message == null) return;
         if (append)
         {
             PublicWrite(message, color);
