@@ -3,7 +3,7 @@
 
 	<PropertyGroup>
 		<ProjectName>CheetahUtils</ProjectName>
-		<OutputType>Library</OutputType>
+		<ProjectType>Library</ProjectType>
 	</PropertyGroup>
 
 	<!-- References -->

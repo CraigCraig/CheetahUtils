@@ -30,7 +30,7 @@ ident_style = tab
 indent_size = 4
 
 # XML Files
-[*.xml]
+[*.{xml}]
 ident_style = tab
 indent_size = 4
 
@@ -95,3 +95,6 @@ dotnet_diagnostic.IDE0290.severity = suggestion
 
 # CS9124: Parameter is captured into the state of the enclosing type and its value is also used to initialize a field, property, or event.
 dotnet_diagnostic.CS9124.severity = none
+
+# IDE0130: Namespace does not match folder structure
+dotnet_diagnostic.IDE0130.severity = silent

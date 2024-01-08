@@ -39,7 +39,7 @@ public class Logger
             ? Path.Combine(FolderPath, $"latest.{prefix.ToLower(CultureInfo.CurrentCulture)}.log")
             : Path.Combine(FolderPath, $"latest.log");
 
-        OldLogPath = Path.Combine(FolderPath, $@"\old_{(DateTime.Now - DateTime.MinValue).TotalMilliseconds}.log");
+        OldLogPath = Path.Combine(FolderPath, $"old_{(DateTime.Now - DateTime.MinValue).TotalMilliseconds}.log");
 
         if (!Directory.Exists(FolderPath)) _ = Directory.CreateDirectory(FolderPath);
         if (File.Exists(LogPath)) File.Move(LogPath, OldLogPath);

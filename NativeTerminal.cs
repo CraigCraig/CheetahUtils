@@ -13,6 +13,19 @@ using CliWrap;
 public static class NativeTerminal
 {
     /// <summary>
+    /// <inheritdoc cref="Execute(string, string[])"/>
+    /// </summary>
+    /// <param name="line"></param>
+    /// <returns></returns>
+    public static string? Execute(string line)
+    {
+        string[] split = line.Split(' ');
+        string command = split[0];
+        string[] args = split[1..];
+        return Execute(command, args);
+    }
+
+    /// <summary>
     /// Executes a command in the native terminal
     /// </summary>
     /// <param name="command"></param>
