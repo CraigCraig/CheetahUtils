@@ -205,7 +205,7 @@ public class Logger
     /// </summary>
     /// <param name="message"></param>
     /// <param name="level"></param>
-    public void Write(string? message, LogLevel level = LogLevel.INFO) => Write(message, Color.White, level);
+    public void Write(object? message, LogLevel level = LogLevel.INFO) => Write(message, Color.White, level);
 
     /// <summary>
     /// Writes a line to the logger, with a specific <see cref="System.Drawing.Color"/>.
@@ -213,9 +213,9 @@ public class Logger
     /// <param name="message"></param>
     /// <param name="color"></param>
     /// <param name="level"></param>
-    public void Write(string message, System.Drawing.Color color, LogLevel level = LogLevel.INFO) => Write(message, new Color(color.R, color.G, color.B), level);
+    public void Write(object message, System.Drawing.Color color, LogLevel level = LogLevel.INFO) => Write(message, new Color(color.R, color.G, color.B), level);
 
-    public void Append(string message, Color? color)
+    public void Append(object message, Color? color)
     {
         Color lcolor = color ?? Color.White;
         Write(message, lcolor, append: true);
@@ -227,7 +227,7 @@ public class Logger
     /// <param name="message"></param>
     /// <param name="color"></param>
     /// <param name="level"></param>
-    public void Write(string? message, Color color, LogLevel level = LogLevel.INFO, bool append = false, bool noNewline = false)
+    public void Write(object? message, Color color, LogLevel level = LogLevel.INFO, bool append = false, bool noNewline = false)
     {
         if (message == null) return;
         if (append)
@@ -275,7 +275,7 @@ public class Logger
         }
     }
 
-    private void PublicWriteLine(string message, Color color, bool noNewline = false)
+    private void PublicWriteLine(object message, Color color, bool noNewline = false)
     {
         if (noNewline)
         {
@@ -287,13 +287,13 @@ public class Logger
         }
     }
 
-    private void PublicWrite(string message, Color color)
+    private void PublicWrite(object message, Color color)
     {
 #if WINDOWS
         Console.Write($"{ConsoleUtils.ForegroundColor(color)}{message}");
 #else
         Console.Write($"{message}");
 #endif
-        File.AppendAllText(LogPath, message);
+        File.AppendAllText(LogPath, message.ToString());
     }
 }

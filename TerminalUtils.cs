@@ -10,33 +10,48 @@ namespace CheetahUtils;
 
 using CliWrap;
 
-public static class NativeTerminal
+public static class TerminalUtils
 {
-    /// <summary>
-    /// <inheritdoc cref="Execute(string, string[])"/>
-    /// </summary>
-    /// <param name="line"></param>
-    /// <returns></returns>
-    public static string? Execute(string line)
-    {
-        string[] split = line.Split(' ');
-        string command = split[0];
-        string[] args = split[1..];
-        return Execute(command, args);
-    }
 
     /// <summary>
-    /// Executes a command in the native terminal
+    /// Executes a command in PowerShell
     /// </summary>
     /// <param name="command"></param>
     /// <param name="args"></param>
     /// <returns></returns>
-    public static string? Execute(string command, string[] args)
+    public static string? PowerShell(string command)
     {
         try
         {
+            string[] args = command.Split(" ");
             StringBuilder sb = new();
-            Command c = Cli.Wrap(command).WithArguments(args)
+            Command c = Cli.Wrap("pwsh").WithArguments(args.Prepend("-Command"))
+                .WithValidation(CommandResultValidation.None)
+                .WithStandardErrorPipe(PipeTarget.ToDelegate((s) => sb.AppendLine(s)))
+                .WithStandardOutputPipe(PipeTarget.ToDelegate((s) => sb.AppendLine(s)));
+
+            CommandResult result = c.ExecuteAsync().ConfigureAwait(false).GetAwaiter().GetResult();
+            return sb.ToString();
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// Executes a command in cmd
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="args"></param>
+    /// <returns></returns>
+    public static string? Cmd(string command)
+    {
+        try
+        {
+            string[] args = command.Split(" ");
+            StringBuilder sb = new();
+            Command c = Cli.Wrap("cmd").WithArguments(args.Prepend("/c"))
                 .WithValidation(CommandResultValidation.None)
                 .WithStandardErrorPipe(PipeTarget.ToDelegate((s) => sb.AppendLine(s)))
                 .WithStandardOutputPipe(PipeTarget.ToDelegate((s) => sb.AppendLine(s)));
